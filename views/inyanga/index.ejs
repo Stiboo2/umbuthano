@@ -10,7 +10,7 @@
     <h1>Zonke Inyanga</h1>
     <ul>
         <% for (let nyanga of inyanga) { %> 
-            <li>  <%= nyanga.name %></li>
+            <li><a href="/inyanga/<%= nyanga._id %>"><%= nyanga.name %></a></li>
             <%}  %> 
     </ul>
 </body>
