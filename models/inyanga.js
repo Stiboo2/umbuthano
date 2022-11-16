@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
-const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
 
 const InyangaSchema = new Schema({
-        Name: String,
-        Surname: String,
-        NicName: String,
+        name: String,
+        surname: String,
+        nicName: String,
         massege: String,
         location: String
     
