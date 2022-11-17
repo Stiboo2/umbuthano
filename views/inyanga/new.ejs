@@ -1,16 +1,34 @@
-    <% layout('layouts/boilerplate')%>  
-    <h1> Add anew Member</h1>
-    <form action="/inyanga" method="POST">
-        <div> 
-            <label for="name">Name</label>
-            <input type="text" id="name" name ="inyanga[name]">
-        </div>
+    <% layout('layouts/boilerplate')%>
+    <div class="row">
+        <h1 class="text-center">Add anew Member</h1>
+        <div class="col-6 offset-3">
+            <form action="/inyanga" method="POST">
+                <div class="mb-3"> 
+                    <label class="form-label" for="name">Name</label>
+                    <input class="form-control" type="text" id="name" name ="inyanga[name]">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="surname">Surname</label>
+                    <input class="form-control" type="text" id="surname" name ="inyanga[surname]">
+                </div>
 
-        <div>
-            <label for="surname">Surname</label>
-            <input type="text" id="surname" name ="inyanga[surname]">
+                <div class="mb-3">
+                    <label class="form-label" for="image">Image Url</label>
+                    <input class="form-control" type="text" id="image" name="inyanga[image]">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="masseges">Message</label>
+                    <textarea class="form-control" type="text" id="massege" name="inyanga[massege%]"></textarea>
+                </div>
+  
+                <div class="mb-3">
+                    <label class="form-label" for="masseges">Cell Phone Number</label>
+                    <input type="text" class="form-control item" id="phone-number" name="inyanga[contact%]" placeholder="000 000 0000">
+                </div>
+
+                <button class="btn btn-success" >Add a person</button>
+            </form>
+                <a href="/inyanga">All Doctors</a>
         </div>
-        <button>Add a person</button>
-    </form>
-        <a href="/inyanga">All Doctors</a>
-    
+    </div>
