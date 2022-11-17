@@ -2,18 +2,24 @@
 <div class="row">
 <h1 class="text-center">Edit a Member</h1>
 <div class="col-6 offset-3">
-    <form action="/inyanga/<%=inyanga._id%>?_method=PUT" method="POST">
+    <form action="/inyanga/<%=inyanga._id%>?_method=PUT" method="POST " novalidate class="validated-form">
         <div class="mb-3">
             <label class="form-label" for="name">Name</label>
-            <input class="form-control" type="text" id="name" name ="inyanga[name]" value="<%=inyanga.name%>">
+            <input class="form-control" type="text" id="name" name ="inyanga[name]" value="<%=inyanga.name%>"required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
         </div>
         <div class="mb-3">
             <label class="form-label" for="surname">Surname</label>
-            <input class="form-control" type="text" id="surname" name ="inyanga[surname]"value="<%=inyanga.surname%>">
+            <input class="form-control" type="text" id="surname" name ="inyanga[surname]"value="<%=inyanga.surname%>"required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
         </div>
         <div class="mb-3">
             <label class="form-label" for="image">Image Url</label>
-            <input class="form-control" type="text" id="image" name="inyanga[image]" value="<%=inyanga.image%>">
+            <input class="form-control" type="text" id="image" name="inyanga[image]" value="<%=inyanga.image%>"required>
         </div>
 
         <div class="mb-3">
