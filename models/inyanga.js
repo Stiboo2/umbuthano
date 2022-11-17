@@ -9,7 +9,8 @@ const InyangaSchema = new Schema({
         surname: String,
         nicName: String,
         massege: String,
-        location: String
+        location: String,
+        contact: int,
     
 })
 

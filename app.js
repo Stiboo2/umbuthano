@@ -64,6 +64,12 @@ app.put('/inyanga/:id', async (cin, cout) => {
     cout.redirect(`/inyanga/${inyanga.id}`)
 })
 
+app.delete('/inyanga/:id', async (cin, cout) => {
+    const { id } = cin.params;
+    await Inyanga.findByIdAndDelete(id);
+    cout.redirect('/inyanga');
+})
+
 app.listen(3000,() =>{
     console.log("LISTENING ON PORT 3000")
     })
