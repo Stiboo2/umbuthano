@@ -8,6 +8,9 @@
 </head>
 <body>
     <h1>Zonke Inyanga</h1>
+    <div>
+        <a href="/inyanga/new">Add a Member</a>
+    </div>
     <ul>
         <% for (let nyanga of inyanga) { %> 
             <li><a href="/inyanga/<%= nyanga._id %>"><%= nyanga.name %></a></li>
