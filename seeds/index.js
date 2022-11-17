@@ -14,47 +14,64 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
     });
 
 
-    // const seedInyanga = [
-    //     {
-    //         name: 'Distris Khumalo',
-    //         surname: '1.00',
-    //         nicName: 'vegetable'
-    //     },
-    //     {
-    //         name: 'Organic Goddess Melon',
-    //         surname: 'sssss',
-    //         nicName: 'fruit'
-    //     },
-    //     {
-    //         name: 'Organic Mini Seedless Watermelon',
-    //         surname: "ddd",
-    //         nicName: 'fruit'
-    //     },
-    //     {
-    //         name: 'Organic Celery',
-    //         surname: "sssss",
-    //         nicName: 'vegetable'
-    //     },
-    //     {
-    //         name: 'Chocolate Whole Milk',
-    //         surname: "eeeee",
-    //         nicName: 'dairy'
-    //     },
-    // ]
+
+    const seedInyanga = [
+        {
+            title: 'District',
+            name: 'Thabo',
+            surname: 'Khumalo',
+            nicName: 'The challenger',
+            image: 'https://www.istockphoto.com/photo/leading-his-team-to-success-gm173269341-25708994',
+            massege: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
+
+        },
+        {
+            title: 'District',
+            name: 'Goba',
+            surname: 'Sethole',
+            nicName: 'Dubula',
+            image: 'https://source.unsplash.com/collection/483551',
+            massege: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
+        },
+        {
+            title: 'District',
+            name: 'Jonh',
+            surname: "Nene",
+            nicName: 'Mkhumbi',
+            image: 'https://www.istockphoto.com/photo/close-up-of-doctor-smiling-gm840806462-137028909',
+            massege: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
+        },
+        {
+            title: 'District',
+            name: 'tom',
+            surname: "Sebotsa",
+            nicName: 'angle',
+            Image: 'https://www.istockphoto.com/photo/his-brain-is-set-to-big-ideas-gm956878830-261274016',
+            massege: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
+        },
+        {
+            title: 'District',
+            name: 'Mike',
+            surname: "Baloyi",
+            nicName: 'misic Man',
+            image: 'https://unsplash.com/photos/C5yfbvMWxC8',
+            massege: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
+        },
+    ]
     
-    // Inyanga.insertMany(seedInyanga)
-    //     .then(res => {
-    //         console.log(res)
-    //     })
-    //     .catch(e => {
-    //         console.log(e)
-    //     })
+    Inyanga.insertMany(seedInyanga)
+        .then(res => {
+            console.log(res)
+        })
+        .catch(e => {
+            console.log(e)
+     })
 
 
-const seedDB = async () =>{
-    await Inyanga.deleteMany({});
-    const c = new Inyanga({name: 'RADEBE'});
-    await c.save();
-}
+// const seedDB = async () =>{
+//     await Inyanga.deleteMany({});
+//     const c = new Inyanga({name: 'RADEBE'});
+//     await c.save();
+// }
 
-seedDB();
+// seedDB();

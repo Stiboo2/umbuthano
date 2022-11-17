@@ -10,7 +10,8 @@ const InyangaSchema = new Schema({
         nicName: String,
         massege: String,
         location: String,
-        contact: String
+        contact: Number,
+        image: String
     
 })
 module.exports = mongoose.model('Inyanga',InyangaSchema  );
