@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Edit</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-
-
-</head>
-<body>
-    <h1> Edit a Member</h1>
+    <% layout('layouts/boilerplate')%>
     <form action="/inyanga/<%=inyanga._id%>?_method=PUT" method="POST">
         <div> 
             <label for="name">Name</label>
@@ -23,5 +12,3 @@
         <button>Save Changes</button>
     </form>
         <a href="/inyanga/<%=inyanga._id%>">Back to Izinyanga</a>
-</body>
-</html>

@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Inyanga</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-</head>
-<body>
+
+    <% layout('layouts/boilerplate')%>
     <h1>Zonke Inyanga</h1>
     <div>
         <a href="/inyanga/new">Add a Member</a>
@@ -16,5 +9,5 @@
             <li><a href="/inyanga/<%= nyanga._id %>"><%= nyanga.surname %></a></li>
             <%}  %> 
     </ul>
-</body>
-</html>
+
+    
