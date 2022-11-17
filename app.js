@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const methodOverride = require('method-override');
 const Inyanga = require('./models/inyanga');
 
 const dbURL = 'mongodb+srv://radebetha:0fBLL4cDEeTQcXYX@cluster0.mv1lpdh.mongodb.net/doctors?retryWrites=true&w=majority'
@@ -23,6 +24,7 @@ app.set('view engine','ejs');
 app.set('views', path.join(__dirname, '/views'))
 
 app.use(express.urlencoded({extended:true}))
+app.use(methodOverride('_method'))
 
 
 app.get('/', (cin, cout) => {
@@ -51,7 +53,14 @@ app.get('/inyanga/:id', async (cin, cout) => {
     cout.render('inyanga/show', {inyanga});
 })
 
+app.get('/inyanga/:id/edit', async (cin, cout) => {
+    const inyanga = await Inyanga.findById(cin.params.id);
+    cout.render('inyanga/edit', {inyanga});
+})
 
+app.put('/inyanga/:id', async (cin, cout) => {
+    cout.send("IT WORKED");
+})
 
 app.listen(3000,() =>{
     console.log("LISTENING ON PORT 3000")

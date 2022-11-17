@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 
 const InyangaSchema = new Schema({
+        title:String,
         name: String,
         surname: String,
         nicName: String,

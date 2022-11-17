@@ -6,13 +6,20 @@
     <title>Show</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-    <h1> <%= inyanga.name %></h1>
-    <h2><%= inyanga.surname %></h2>
-<footer>
-    <a href="/inyanga">All Doctors</a>
-</footer>
+
 </head>
 <body>
+
+    <h1> <%= inyanga.name %></h1>
+    <h2><%= inyanga.surname %></h2>
+
     
 </body>
+<p>
+    <a href="/inyanga/<%=inyanga._id%>/edit">Edit</a>
+</p>
+<footer>
+    
+    <a href="/inyanga">All Doctors</a>
+</footer>
 </html>
