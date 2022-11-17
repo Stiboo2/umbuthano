@@ -59,7 +59,9 @@ app.get('/inyanga/:id/edit', async (cin, cout) => {
 })
 
 app.put('/inyanga/:id', async (cin, cout) => {
-    cout.send("IT WORKED");
+    const {id} = cin.params;
+    const inyanga = await Inyanga.findByIdAndUpdate(id,{...cin.body.inyanga});
+    cout.redirect(`/inyanga/${inyanga.id}`)
 })
 
 app.listen(3000,() =>{
