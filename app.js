@@ -2,11 +2,12 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
-const { inyangaSchema } = require('./schemas.js');
+const { inyangaSchema, reviewSchema } = require('./schemas.js');
 const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
 const Inyanga = require('./models/inyanga');
+const Review = require('./models/review');
 
 const dbURL = 'mongodb+srv://radebetha:0fBLL4cDEeTQcXYX@cluster0.mv1lpdh.mongodb.net/doctors?retryWrites=true&w=majority'
 mongoose.connect(dbURL, { useNewUrlParser: true,useUnifiedTopology: true })
@@ -32,6 +33,16 @@ app.use(methodOverride('_method'))
 
 const validateInyanga = (cin, cout, next) => {
     const { error } = inyangaSchema.validate(cin.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(',')
+        throw new ExpressError(msg, 400)
+    } else {
+        next();
+    }
+}
+
+const validateReview = (cin, cout, next) => {
+    const { error } = reviewSchema.validate(cin.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(',')
         throw new ExpressError(msg, 400)
@@ -83,6 +94,17 @@ app.delete('/inyanga/:id', catchAsync(async (cin, cout) => {
     await Inyanga.findByIdAndDelete(id);
     cout.redirect('/inyanga');
 }));
+
+app.post('/inyanga/:id/reviews', validateReview,  catchAsync(async (cin, cout) => {
+    const inyanga = await Inyanga.findById(cin.params.id);
+    const review = new Review(cin.body.review);
+    inyanga.reviews.push(review);
+    await review.save();
+    await inyanga.save();
+    cout.redirect(`/inyanga/${inyanga._id}`);
+}))
+
+
 app.all('*', (cin, cout, next) => {
     next(new ExpressError('Page Not Found', 404))
 })

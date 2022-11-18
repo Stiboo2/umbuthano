@@ -11,7 +11,13 @@ const InyangaSchema = new Schema({
         massege: String,
         location: String,
         contact: Number,
-        image: String
+        image: String,
+        reviews: [
+                {
+                    type: Schema.Types.ObjectId,
+                    ref: 'Review'
+                }
+            ]
     
 })
 module.exports = mongoose.model('Inyanga',InyangaSchema  );
