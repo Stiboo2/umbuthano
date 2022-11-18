@@ -1,39 +1,48 @@
 <% layout('layouts/boilerplate')%>
 <div class="row">
-<h1 class="text-center">Edit a Member</h1>
-<div class="col-6 offset-3">
-    <form action="/inyanga/<%=inyanga._id%>?_method=PUT" method="POST">
-        <div class="mb-3">
-            <label class="form-label" for="name">Name</label>
-            <input class="form-control" type="text" id="name" name ="inyanga[name]" value="<%=inyanga.name%>">
-        </div>
-        <div class="mb-3">
-            <label class="form-label" for="surname">Surname</label>
-            <input class="form-control" type="text" id="surname" name ="inyanga[surname]"value="<%=inyanga.surname%>">
-        </div>
-        <div class="mb-3">
-            <label class="form-label" for="image">Image Url</label>
-            <input class="form-control" type="text" id="image" name="inyanga[image]" value="<%=inyanga.image%>">
-        </div>
+    <h1 class="text-center">Edit a Member</h1>
+    <div class="col-6 offset-3">
+        <form action="/inyanga/<%=inyanga._id%>?_method=PUT" method="POST" novalidate class="validated-form">
+            <div class="mb-3">
+                <label class="form-label" for="name">Name</label>
+                <input class="form-control" type="text" id="name" name ="inyanga[name]" value="<%=inyanga.name%>">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="surname">Surname</label>
+                <input class="form-control" type="text" id="surname" name ="inyanga[surname]"value="<%=inyanga.surname%>"required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="image">Image Url</label>
+                <input class="form-control" type="text" id="image" name="inyanga[image]" value="<%=inyanga.image%>">
+            </div>
 
-        <div class="mb-3">
-            <label class="form-label" for="massege">Massege</label>
-            <textarea class="form-control" type="text" id="massege"
-            name="inyanga[massege]"><%= inyanga.massege%></textarea>
-        </div>
+            <div class="mb-3">
+                <label class="form-label" for="massege">Massege</label>
+                <textarea class="form-control" type="text" id="massege"
+                name="inyanga[massege]"required><%= inyanga.massege%></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
 
-        <div class="mb-3">
-            <label class="form-label" for="phone-number">Cell Phone Number</label>
-            <input class="form-control" type="text" id="phone-number" name="inyanga[contact]" value="<%= inyanga.contact%>">
-        </div>
+            <div class="mb-3">
+                <label class="form-label" for="phone-number">Cell Phone Number</label>
+                <input class="form-control" type="text" id="phone-number" name="inyanga[contact]" value="<%= inyanga.contact%>"required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
 
-        <div class="mb-3">
-            <button  class="btn btn-info">Save Changes</button>
-        </div>
-    </form>
-    <a href="/inyanga/<%=inyanga._id%>">Back To Izinyanga</a>
+            <div class="mb-3">
+                <button  class="btn btn-info">Save Changes</button>
+            </div>
+        </form>
+        <a href="/inyanga/<%=inyanga._id%>">Back To Izinyanga</a>
 
-</div>
+    </div>
 </div>
 
 
