@@ -24,8 +24,15 @@ router.post('/register', catchAsync(async (cin, cout, next) => {
     }
 }));
 
-router.get('/login', (req, res) => {
-    res.render('users/login');
+router.get('/login', (cin, cout) => {
+    cout.render('users/login');
+})
+
+router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (cin, cout) => {
+    cin.flash('success', 'welcome back!');
+    // const redirectUrl = cin.session.returnTo || '/inyanga';
+    // delete CanvasRenderingContext2D.session.returnTo;
+    cout.redirect('/inyanga');
 })
 
 
