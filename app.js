@@ -104,6 +104,12 @@ app.post('/inyanga/:id/reviews', validateReview,  catchAsync(async (cin, cout) =
     cout.redirect(`/inyanga/${inyanga._id}`);
 }))
 
+app.delete('/inyanga/:id/reviews/:reviewId', catchAsync(async (cin, cout) => {
+    const { id, reviewId } = cin.params;
+    await Inyanga.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    await Review.findByIdAndDelete(reviewId);
+    cout.redirect(`/inyanga/${id}`);
+}))
 
 app.all('*', (cin, cout, next) => {
     next(new ExpressError('Page Not Found', 404))
