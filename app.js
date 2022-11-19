@@ -2,14 +2,21 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
-const { inyangaSchema, reviewSchema } = require('./schemas.js');
 const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
 const flash = require('connect-flash');
 const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/user');
 
-const inyanga = require('./routes/inyanga');
-const reviews = require('./routes/reviews');
+const userRoutes = require('./routes/users');
+const inyangaRoutes = require('./routes/inyanga');
+const reviewsRoutes = require('./routes/reviews');
+
+
+
+
 
 const dbURL = 'mongodb+srv://radebetha:0fBLL4cDEeTQcXYX@cluster0.mv1lpdh.mongodb.net/doctors?retryWrites=true&w=majority'
 mongoose.connect(dbURL, { useNewUrlParser: true,useUnifiedTopology: true })
@@ -47,6 +54,14 @@ const sessionConfig = {
 app.use(session(sessionConfig))
 app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
 app.use((cin, cout, next) => {
     cout.locals.success = cin.flash('success');
     cout.locals.error = cin.flash('error');
@@ -54,9 +69,18 @@ app.use((cin, cout, next) => {
 })
 
 
+app.get('/fakeUser', async (cin,cout) =>{
+    const user = new User({email:'thabo.radebe@gmail.com',username:'thabo'})
+    const newUser = await User.register(user,'checken');
+    cout.send(newUser)
+})
 
-app.use('/inyanga', inyanga)
-app.use('/inyanga/:id/reviews', reviews)
+//app.use('/inyanga', campgroundRoutes)
+//app.use('/inyanga/:id/reviews', reviewRoutes)
+
+app.use('/', userRoutes);
+app.use('/inyanga', inyangaRoutes)
+app.use('/inyanga/:id/reviews', reviewsRoutes)
 
 app.get('/', (cin, cout) => {
     cout.render('home')
