@@ -9,6 +9,8 @@ const methodOverride = require('method-override');
 const Inyanga = require('./models/inyanga');
 const Review = require('./models/review');
 
+const inyanga = require('./routes/inyanga');
+
 const dbURL = 'mongodb+srv://radebetha:0fBLL4cDEeTQcXYX@cluster0.mv1lpdh.mongodb.net/doctors?retryWrites=true&w=majority'
 mongoose.connect(dbURL, { useNewUrlParser: true,useUnifiedTopology: true })
     .then(() => {
@@ -50,50 +52,13 @@ const validateReview = (cin, cout, next) => {
         next();
     }
 }
-
+app.use('/inyanga', inyanga)
 
 app.get('/', (cin, cout) => {
     cout.render('home')
 })
 
 
-app.get('/inyanga',catchAsync( async (cin, cout) => {
-    const inyanga = await Inyanga.find({});
-    cout.render('inyanga/index', {inyanga})
-}));
-
-
-app.get('/inyanga/new', async (cin, cout) => {
-    cout.render('inyanga/new');
-})
-
-app.post('/inyanga',validateInyanga, catchAsync( async (cin, cout) => {
-    const inyanga = new Inyanga(cin.body.inyanga);
-    await inyanga.save();
-    cout.redirect(`/inyanga/${inyanga.id}`)
-}))
-
-app.get('/inyanga/:id',  catchAsync(async (cin, cout) => {
-    const inyanga = await Inyanga.findById(cin.params.id).populate('reviews');
-    cout.render('inyanga/show', {inyanga});
-}));
-
-app.get('/inyanga/:id/edit',  catchAsync(async (cin, cout) => {
-    const inyanga = await Inyanga.findById(cin.params.id);
-    cout.render('inyanga/edit', {inyanga});
-}))
-
-app.put('/inyanga/:id', validateInyanga, catchAsync(async (cin, cout) => {
-    const {id} = cin.params;
-    const inyanga = await Inyanga.findByIdAndUpdate(id,{...cin.body.inyanga});
-    cout.redirect(`/inyanga/${inyanga.id}`)
-}));
-
-app.delete('/inyanga/:id', catchAsync(async (cin, cout) => {
-    const { id } = cin.params;
-    await Inyanga.findByIdAndDelete(id);
-    cout.redirect('/inyanga');
-}));
 
 app.post('/inyanga/:id/reviews', validateReview,  catchAsync(async (cin, cout) => {
     const inyanga = await Inyanga.findById(cin.params.id);
