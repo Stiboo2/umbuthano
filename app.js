@@ -74,7 +74,7 @@ app.post('/inyanga',validateInyanga, catchAsync( async (cin, cout) => {
 }))
 
 app.get('/inyanga/:id',  catchAsync(async (cin, cout) => {
-    const inyanga = await Inyanga.findById(cin.params.id);
+    const inyanga = await Inyanga.findById(cin.params.id).populate('reviews');
     cout.render('inyanga/show', {inyanga});
 }));
 
