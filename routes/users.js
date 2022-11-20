@@ -35,5 +35,17 @@ router.post('/login', passport.authenticate('local', { failureFlash: true, failu
     cout.redirect('/inyanga');
 })
 
+router.get('/logout', (cin, cout,next) => {
+    cin.logout(function (err) {
+        if (err) {
+            return next(err);
+          }
+
+    cin.flash('success', "Goodbye!");
+    cout.redirect('/inyanga');
+    });
+});
+
+
 
 module.exports = router;
