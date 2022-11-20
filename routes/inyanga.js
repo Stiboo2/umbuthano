@@ -34,7 +34,7 @@ router.post('/', isLoggedIn,validateInyanga, catchAsync( async (cin, cout) => {
     cout.redirect(`/inyanga/${inyanga.id}`)
 }))
 
-router.get('/:id',  isLoggedIn,catchAsync(async (cin, cout) => {
+router.get('/:id',  catchAsync(async (cin, cout) => {
     const inyanga = await Inyanga.findById(cin.params.id).populate('reviews');
     if (!inyanga) {
         cin.flash('error', 'Cannot find that member!');
@@ -43,7 +43,7 @@ router.get('/:id',  isLoggedIn,catchAsync(async (cin, cout) => {
     cout.render('inyanga/show', {inyanga});
 }));
 
-router.get('/:id/edit',  isLoggedIn, catchAsync(async (cin, cout) => {
+router.get('/:id/edit',  isLoggedIn,catchAsync(async (cin, cout) => {
     const inyanga = await Inyanga.findById(cin.params.id);
     if (!inyanga) {
         cin.flash('error', 'Cannot find that member!');

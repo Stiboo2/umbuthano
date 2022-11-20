@@ -6,7 +6,7 @@ const Review = require('../models/review');
 
 const { reviewSchema } = require('../schemas.js');
 
-
+const { isLoggedIn, isAuthor, validateCampground } = require('../middleware');
 const ExpressError = require('../utils/ExpressError');
 const catchAsync = require('../utils/catchAsync');
 
@@ -22,7 +22,7 @@ const validateReview = (cin, cout, next) => {
 
 
 
-router.post('/', validateReview,  catchAsync(async (cin, cout) => {
+router.post('/',isLoggedIn, validateReview,  catchAsync(async (cin, cout) => {
     const inyanga = await Inyanga.findById(cin.params.id);
     const review = new Review(cin.body.review);
     inyanga.reviews.push(review);
@@ -32,7 +32,7 @@ router.post('/', validateReview,  catchAsync(async (cin, cout) => {
     cout.redirect(`/inyanga/${inyanga._id}`);
 }))
 
-router.delete('/:reviewId', catchAsync(async (cin, cout) => {
+router.delete('/:reviewId',isLoggedIn, catchAsync(async (cin, cout) => {
     const { id, reviewId } = cin.params;
     await Inyanga.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
     await Review.findByIdAndDelete(reviewId);

@@ -28,11 +28,17 @@ router.get('/login', (cin, cout) => {
     cout.render('users/login');
 })
 
-router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (cin, cout) => {
-    cin.flash('success', 'welcome back!');
-    // const redirectUrl = cin.session.returnTo || '/inyanga';
-    // delete CanvasRenderingContext2D.session.returnTo;
-    cout.redirect('/inyanga');
+router.post(
+    '/login', 
+    passport.authenticate(  'local',   { 
+        failureFlash: true, 
+        failureRedirect: '/login',
+        failureMessage: true,
+    keepSessionInfo: true, }), 
+    (cin, cout) => {cin.flash('success', 'welcome back!');
+    const redirectUrl = cin.session.returnTo || '/inyanga';
+    delete cin.session.returnTo;
+    cout.redirect(redirectUrl);
 })
 
 router.get('/logout', (cin, cout,next) => {
