@@ -40,7 +40,6 @@ router.get('/logout', (cin, cout,next) => {
         if (err) {
             return next(err);
           }
-
     cin.flash('success', "Goodbye!");
     cout.redirect('/inyanga');
     });

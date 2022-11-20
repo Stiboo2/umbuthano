@@ -63,6 +63,7 @@ passport.deserializeUser(User.deserializeUser());
 
 
 app.use((cin, cout, next) => {
+    cout.locals.currentUser = cin.user;
     cout.locals.success = cin.flash('success');
     cout.locals.error = cin.flash('error');
     next();
