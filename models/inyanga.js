@@ -12,6 +12,10 @@ const InyangaSchema = new Schema({
         location: String,
         contact: Number,
         image: String,
+        author: {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        },
         reviews: [
                 {
                     type: Schema.Types.ObjectId,

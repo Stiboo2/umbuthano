@@ -12,11 +12,15 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
         console.log("OH NO ERROR!!!!")
         console.log(err)
     });
-
+// const seedDB = async () =>{
+//     await Inyanga.deleteMany({});
+   
+// }
 
 
     const seedInyanga = [
         {
+            author: '637bdadce1237730b2bbaa73',
             title: 'District',
             name: 'Thabo',
             surname: 'Khumalo',
@@ -26,6 +30,7 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
 
         },
         {
+            author: '637bdadce1237730b2bbaa73',
             title: 'District',
             name: 'Goba',
             surname: 'Sethole',
@@ -34,6 +39,7 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
             massege: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
         },
         {
+            author: '637bdadce1237730b2bbaa73',
             title: 'District',
             name: 'Jonh',
             surname: "Nene",
@@ -42,6 +48,7 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
             massege: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
         },
         {
+            author: '637bdadce1237730b2bbaa73',
             title: 'District',
             name: 'tom',
             surname: "Sebotsa",
@@ -50,6 +57,7 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
             massege: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
         },
         {
+            author: '637bdadce1237730b2bbaa73',
             title: 'District',
             name: 'Mike',
             surname: "Baloyi",
@@ -74,4 +82,4 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
 //     await c.save();
 // }
 
-// seedDB();
+//seedDB();

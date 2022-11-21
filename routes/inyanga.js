@@ -29,13 +29,14 @@ router.get('/new',isLoggedIn, (cin, cout) => {
 
 router.post('/', isLoggedIn,validateInyanga, catchAsync( async (cin, cout) => {
     const inyanga = new Inyanga(cin.body.inyanga);
+    inyanga.author = cin.user._id;
     await inyanga.save();
     cin.flash('success', 'Successfully added a new member!');
     cout.redirect(`/inyanga/${inyanga.id}`)
 }))
 
 router.get('/:id',  catchAsync(async (cin, cout) => {
-    const inyanga = await Inyanga.findById(cin.params.id).populate('reviews');
+    const inyanga = await Inyanga.findById(cin.params.id).populate('reviews').populate('author');
     if (!inyanga) {
         cin.flash('error', 'Cannot find that member!');
         return cout.redirect('/inyanga');
