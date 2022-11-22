@@ -20,7 +20,7 @@ router.post('/',isLoggedIn, validateReview,  catchAsync(async (cin, cout) => {
     cout.redirect(`/inyanga/${inyanga._id}`);
 }))
 
-router.delete('/:reviewId',isLoggedIn, catchAsync(async (cin, cout) => {
+router.delete('/:reviewId',isLoggedIn, isReviewAuthor, catchAsync(async (cin, cout) => {
     const { id, reviewId } = cin.params;
     await Inyanga.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
     await Review.findByIdAndDelete(reviewId);

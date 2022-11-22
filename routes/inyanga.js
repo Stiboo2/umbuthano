@@ -32,7 +32,6 @@ router.get('/:id',  catchAsync(async (cin, cout) => {
             path: 'author'
         }
     }).populate('author');
-    console.log(inyanga);
     if (!inyanga) {
         cin.flash('error', 'Cannot find that member!');
         return cout.redirect('/inyanga');

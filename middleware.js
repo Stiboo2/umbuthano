@@ -34,6 +34,16 @@ module.exports.isAuthor = async(cin, cout, next) => {
     }
 }
 
+module.exports.isReviewAuthor = async (cin, cout, next) => {
+    const { id, reviewId } = cin.params;
+    const review = await Review.findById(reviewId);
+    if (!review.author.equals(cin.user._id)) {
+        cin.flash('error', 'You do not have permission to do that!');
+        return cout.redirect(`/inyanga/${id}`);
+    }
+    next();
+}
+
 module.exports.validateReview = (cin, cout, next) => {
     const { error } = reviewSchema.validate(cin.body);
     if (error) {
