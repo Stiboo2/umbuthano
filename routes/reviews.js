@@ -12,6 +12,7 @@ const catchAsync = require('../utils/catchAsync');
 router.post('/',isLoggedIn, validateReview,  catchAsync(async (cin, cout) => {
     const inyanga = await Inyanga.findById(cin.params.id);
     const review = new Review(cin.body.review);
+    review.author = cin.user._id;
     inyanga.reviews.push(review);
     await review.save();
     await inyanga.save();
