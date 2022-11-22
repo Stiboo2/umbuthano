@@ -2,31 +2,9 @@
 const express = require('express');
 const router = express.Router();
 const catchAsync = require('../utils/catchAsync');
-const { isLoggedIn, validateCampground } = require('../middleware');
-const { inyangaSchema } = require('../schemas.js');
+const { isLoggedIn, isAuthor, validateInyanga } = require('../middleware');
 const ExpressError = require('../utils/ExpressError');
 const Inyanga = require('../models/inyanga');
-
-const validateInyanga = (cin, cout, next) => {
-    const { error } = inyangaSchema.validate(cin.body);
-    if (error) {
-        const msg = error.details.map(el => el.message).join(',')
-        throw new ExpressError(msg, 400)
-    } else {
-        next();
-    }
-}
-
-
-const isAuthor = async(cin, cout, next) => {
-    const { id } = cin.params;
-    const inyanga = await Inyanga.findById(id);
-    if(!inyanga.author.equals(cin.user._id)){
-        cin.flash('error','You do not have permission to do that!');
-        return cout.redirect(`/inyanga/${id}`);
-    } else {
-    next();
-}
 
 
 router.get('/',catchAsync( async (cin, cout) => {
