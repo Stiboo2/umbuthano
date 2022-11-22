@@ -6,11 +6,7 @@ const Review = require('./models/review');
 module.exports.isLoggedIn = (cin, cout, next) => {
     if (!cin.isAuthenticated()){
         cin.session.returnTo = cin.originalUrl
-        console.log("cin.originalUrl")
-        console.log(cin.originalUrl)
-        console.log("cin.session.returnTo")
-        console.log(cin.session.returnTo)
-        cin.flash('error','you need to be signed in');
+        cin.flash('error','you need to be signed in bra');
         return cout.redirect('/login');
     }
     next();
@@ -35,5 +31,15 @@ module.exports.isAuthor = async(cin, cout, next) => {
         return cout.redirect(`/inyanga/${id}`);
     } else {
     next();
+    }
+}
+
+module.exports.validateReview = (cin, cout, next) => {
+    const { error } = reviewSchema.validate(cin.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(',')
+        throw new ExpressError(msg, 400)
+    } else {
+        next();
     }
 }

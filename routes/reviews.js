@@ -5,22 +5,9 @@ const Inyanga = require('../models/inyanga');
 const Review = require('../models/review');
 
 const { reviewSchema } = require('../schemas.js');
-
-const { isLoggedIn, isAuthor, validateCampground } = require('../middleware');
+const { validateReview, isLoggedIn, isReviewAuthor } = require('../middleware');
 const ExpressError = require('../utils/ExpressError');
 const catchAsync = require('../utils/catchAsync');
-
-const validateReview = (cin, cout, next) => {
-    const { error } = reviewSchema.validate(cin.body);
-    if (error) {
-        const msg = error.details.map(el => el.message).join(',')
-        throw new ExpressError(msg, 400)
-    } else {
-        next();
-    }
-}
-
-
 
 router.post('/',isLoggedIn, validateReview,  catchAsync(async (cin, cout) => {
     const inyanga = await Inyanga.findById(cin.params.id);
