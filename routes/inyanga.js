@@ -26,7 +26,13 @@ router.post('/', isLoggedIn,validateInyanga, catchAsync( async (cin, cout) => {
 }))
 
 router.get('/:id',  catchAsync(async (cin, cout) => {
-    const inyanga = await Inyanga.findById(cin.params.id).populate('reviews').populate('author');
+    const inyanga = await Inyanga.findById(cin.params.id).populate({
+        path: 'reviews',
+        populate: {
+            path: 'author'
+        }
+    }).populate('author');
+    console.log(inyanga);
     if (!inyanga) {
         cin.flash('error', 'Cannot find that member!');
         return cout.redirect('/inyanga');
