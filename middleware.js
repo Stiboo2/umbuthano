@@ -53,3 +53,10 @@ module.exports.validateReview = (cin, cout, next) => {
         next();
     }
 }
+
+module.exports.checkReturnTo = (cin, cout, next) => {
+    if (cin.session.returnTo) {
+        cout.locals.returnTo = cin.session.returnTo;
+    } 
+    next();
+}

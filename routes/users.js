@@ -3,6 +3,8 @@ const router = express.Router();
 const passport = require('passport');
 const catchAsync = require('../utils/catchAsync');
 const User = require('../models/user');
+const { query } = require('express');
+const { checkReturnTo } = require('../middleware');
 
 router.get('/register', (cin, cout) => {
     cout.render('users/register');
@@ -25,19 +27,22 @@ router.post('/register', catchAsync(async (cin, cout, next) => {
 }));
 
 router.get('/login', (cin, cout) => {
+if(cin.query.returnTo){
+    cin.session.returnTo = cin.query.returnTo;
+}
+
     cout.render('users/login');
 })
 
 router.post(
-    '/login', 
+    '/login', checkReturnTo,
     passport.authenticate(  'local',   { 
         failureFlash: true, 
         failureRedirect: '/login',
         failureMessage: true,
     keepSessionInfo: true, }), 
     (cin, cout) => {cin.flash('success', 'welcome back!');
-    const redirectUrl = cin.session.returnTo || '/inyanga';
-    delete cin.session.returnTo;
+    const redirectUrl = cout.locals.returnTo || '/inyanga'
     cout.redirect(redirectUrl);
 })
 
