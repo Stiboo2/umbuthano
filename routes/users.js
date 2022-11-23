@@ -6,9 +6,7 @@ const User = require('../models/user');
 const { query } = require('express');
 const { checkReturnTo } = require('../middleware');
 
-router.get('/register', (cin, cout) => {
-    cout.render('users/register');
-});
+router.get('/register');
 
 router.post('/register', catchAsync(async (cin, cout, next) => {
     try {
