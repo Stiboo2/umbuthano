@@ -5,32 +5,13 @@ const catchAsync = require('../utils/catchAsync');
 const User = require('../models/user');
 const { query } = require('express');
 const { checkReturnTo } = require('../middleware');
+const users = require('../controllers/users');
 
-router.get('/register');
+router.get('/register',users.renderRegister);
 
-router.post('/register', catchAsync(async (cin, cout, next) => {
-    try {
-        const { email, username, password } = cin.body;
-        const user = new User({ email, username });
-        const registeredUser = await User.register(user, password);
-        cin.login(registeredUser, err => {
-            if (err) return next(err);
-            cin.flash('success', 'Welcome to Yelp Enhlini Yezi Yanga!');
-            cout.redirect('/inyanga');
-        })
-    } catch (e) {
-        cin.flash('error', e.message);
-        cout.redirect('register');
-    }
-}));
+router.post('/register', catchAsync(users.register));
 
-router.get('/login', (cin, cout) => {
-if(cin.query.returnTo){
-    cin.session.returnTo = cin.query.returnTo;
-}
-
-    cout.render('users/login');
-})
+router.get('/login', users.renderLogin)
 
 router.post(
     '/login', checkReturnTo,
@@ -39,20 +20,9 @@ router.post(
         failureRedirect: '/login',
         failureMessage: true,
     keepSessionInfo: true, }), 
-    (cin, cout) => {cin.flash('success', 'welcome back!');
-    const redirectUrl = cout.locals.returnTo || '/inyanga'
-    cout.redirect(redirectUrl);
-})
+users.login)
 
-router.get('/logout', (cin, cout,next) => {
-    cin.logout(function (err) {
-        if (err) {
-            return next(err);
-          }
-    cin.flash('success', "Goodbye!");
-    cout.redirect('/inyanga');
-    });
-});
+router.get('/logout', users.logout);
 
 
 
