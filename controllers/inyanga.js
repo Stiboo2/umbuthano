@@ -12,8 +12,10 @@ module.exports.renderNewForm = (cin, cout) => {
 
 module.exports.createCampground =  async (cin, cout) => {
     const inyanga = new Inyanga(cin.body.inyanga);
+    inyanga.image = cin.file.map(f => ({ url: f.path, filename: f.filename }));
     inyanga.author = cin.user._id;
     await inyanga.save();
+    console.log
     cin.flash('success', 'Successfully added a new member!');
     cout.redirect(`/inyanga/${inyanga.id}`)
 }

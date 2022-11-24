@@ -9,11 +9,8 @@ const { storage } = require('../cloudinary');
 const upload = multer({ storage });
 router.route('/')
     .get(catchAsync( inyanga.index ))
+    .post(isLoggedIn, upload.single('image'), validateInyanga, catchAsync(inyanga.createInyanga))
 
-     .post(upload.array('image'),(cin, cout) => {
-        console.log(cin.body, cin.files);
-        cout.send("it works")
-    }) 
 
 router.get('/new',isLoggedIn, inyanga.renderNewForm)
 router.route('/:id')
