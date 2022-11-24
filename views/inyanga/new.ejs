@@ -2,7 +2,7 @@
     <div class="row">
         <h1 class="text-center">Add anew Member</h1>
         <div class="col-6 offset-3">
-            <form action="/inyanga" method="POST"novalidate class="validated-form">
+            <form action="/inyanga" method="POST"novalidate class="validated-form" enctype="multipart/form-data">
                 <div class="mb-3"> 
                     <label class="form-label" for="name">Name</label>
                     <input class="form-control" type="text" id="name" name ="inyanga[name]">
@@ -14,11 +14,11 @@
                         Looks good!
                     </div>
                 </div>
-
-                <div class="mb-3">
+                <input type="file" name="image" id="" multiple>
+               <!--  <div class="mb-3">
                     <label class="form-label" for="image">Image Url</label>
                     <input class="form-control" type="text" id="image" name="inyanga[image]">
-                </div>
+                </div> -->
 
                 <div class="mb-3">
                     <label class="form-label" for="massege">Message</label>
