@@ -12,11 +12,9 @@ module.exports.renderNewForm = (cin, cout) => {
 
 module.exports.createInyanga =  async (cin, cout) => {
     const inyanga = new Inyanga(cin.body.inyanga);
-    console.log("inside module.exports.create -----------");
     inyanga.images = cin.files.map(f => ({ url: f.path, filename: f.filename }));
     inyanga.author = cin.user._id;
     await inyanga.save();
-    console.log(inyanga);
     cin.flash('success', 'Successfully added a new member!');
     cout.redirect(`/inyanga/${inyanga.id}`)
 }
