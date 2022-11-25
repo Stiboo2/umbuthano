@@ -10,15 +10,18 @@ module.exports.renderNewForm = (cin, cout) => {
     }
 
 
-module.exports.createCampground =  async (cin, cout) => {
+module.exports.createInyanga =  async (cin, cout) => {
     const inyanga = new Inyanga(cin.body.inyanga);
+    console.log("inside module.exports.create -----------");
+    inyanga.images = cin.files.map(f => ({ url: f.path, filename: f.filename }));
     inyanga.author = cin.user._id;
     await inyanga.save();
+    console.log(inyanga);
     cin.flash('success', 'Successfully added a new member!');
     cout.redirect(`/inyanga/${inyanga.id}`)
 }
 
-module.exports.showCampground = async (cin, cout) => {
+module.exports.showInyanga = async (cin, cout) => {
     const inyanga = await Inyanga.findById(cin.params.id).populate({
         path: 'reviews',
         populate: {
@@ -43,14 +46,14 @@ module.exports.renderEditForm = async (cin, cout) => {
     cout.render('inyanga/edit', {inyanga});
 }
 
-module.exports.updateCampground =async (cin, cout) => {
+module.exports.updateInyanga =async (cin, cout) => {
     const {id} = cin.params;
     const inyanga = await Inyanga.findByIdAndUpdate(id,{...cin.body.inyanga});
     cin.flash('success', 'Successfully updated a member!');
     cout.redirect(`/inyanga/${inyanga._id}`)
 }
 
-module.exports.deleteCampground = async (cin, cout) => {
+module.exports.deleteInyanga = async (cin, cout) => {
     const { id } = cin.params;
     await Inyanga.findByIdAndDelete(id);
     cin.flash('success', 'Successfully deleted a member!');

@@ -11,7 +11,12 @@ const InyangaSchema = new Schema({
         massege: String,
         location: String,
         contact: Number,
-        image: String,
+        images: [ 
+            {
+                url: String,
+                filename: String
+            }
+        ],
         author: {
             type: Schema.Types.ObjectId,
             ref: 'User'

@@ -25,46 +25,50 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
             name: 'Thabo',
             surname: 'Khumalo',
             nicName: 'The challenger',
-            image: 'https://www.istockphoto.com/photo/leading-his-team-to-success-gm173269341-25708994',
             massege: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
-
-        },
-        {
-            author: '637bdadce1237730b2bbaa73',
-            title: 'District',
-            name: 'Goba',
-            surname: 'Sethole',
-            nicName: 'Dubula',
-            image: 'https://source.unsplash.com/collection/483551',
-            massege: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
-        },
-        {
-            author: '637bdadce1237730b2bbaa73',
-            title: 'District',
-            name: 'Jonh',
-            surname: "Nene",
-            nicName: 'Mkhumbi',
-            image: 'https://www.istockphoto.com/photo/close-up-of-doctor-smiling-gm840806462-137028909',
-            massege: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
-        },
-        {
-            author: '637bdadce1237730b2bbaa73',
-            title: 'District',
-            name: 'tom',
-            surname: "Sebotsa",
-            nicName: 'angle',
-            Image: 'https://www.istockphoto.com/photo/his-brain-is-set-to-big-ideas-gm956878830-261274016',
-            massege: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
-        },
-        {
-            author: '637bdadce1237730b2bbaa73',
-            title: 'District',
-            name: 'Mike',
-            surname: "Baloyi",
-            nicName: 'misic Man',
-            image: 'https://unsplash.com/photos/C5yfbvMWxC8',
-            massege: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
-        },
+            image: [ 
+                {
+                    url: String,
+                    filename: String
+                }
+            ]
+        }
+        // {
+        //     author: '637bdadce1237730b2bbaa73',
+        //     title: 'District',
+        //     name: 'Goba',
+        //     surname: 'Sethole',
+        //     nicName: 'Dubula',
+        //     image: 'https://source.unsplash.com/collection/483551',
+        //     massege: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
+        // },
+        // {
+        //     author: '637bdadce1237730b2bbaa73',
+        //     title: 'District',
+        //     name: 'Jonh',
+        //     surname: "Nene",
+        //     nicName: 'Mkhumbi',
+        //     image: 'https://www.istockphoto.com/photo/close-up-of-doctor-smiling-gm840806462-137028909',
+        //     massege: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
+        // },
+        // {
+        //     author: '637bdadce1237730b2bbaa73',
+        //     title: 'District',
+        //     name: 'tom',
+        //     surname: "Sebotsa",
+        //     nicName: 'angle',
+        //     Image: 'https://www.istockphoto.com/photo/his-brain-is-set-to-big-ideas-gm956878830-261274016',
+        //     massege: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
+        // },
+        // {
+        //     author: '637bdadce1237730b2bbaa73',
+        //     title: 'District',
+        //     name: 'Mike',
+        //     surname: "Baloyi",
+        //     nicName: 'misic Man',
+        //     image: 'https://unsplash.com/photos/C5yfbvMWxC8',
+        //     massege: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
+        // },
     ]
     
     Inyanga.insertMany(seedInyanga)

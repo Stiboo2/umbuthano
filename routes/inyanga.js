@@ -9,17 +9,15 @@ const { storage } = require('../cloudinary');
 const upload = multer({ storage });
 router.route('/')
     .get(catchAsync( inyanga.index ))
+    .post(isLoggedIn, upload.array('image'), validateInyanga, catchAsync(inyanga.createInyanga))
 
-     .post(upload.array('image'),(cin, cout) => {
-        console.log(cin.body, cin.files);
-        cout.send("it works")
-    }) 
+
 
 router.get('/new',isLoggedIn, inyanga.renderNewForm)
 router.route('/:id')
-    .put(isLoggedIn, isAuthor, validateInyanga, catchAsync(inyanga.updateCampground))
-    .delete(isLoggedIn, isAuthor, catchAsync(inyanga.deleteCampground))
-    .get( catchAsync(inyanga.showCampground));
+    .put(isLoggedIn, isAuthor, validateInyanga, catchAsync(inyanga.updateInyanga))
+    .delete(isLoggedIn, isAuthor, catchAsync(inyanga.deleteInyanga))
+    .get( catchAsync(inyanga.showInyanga));
 
 router.get('/:id/edit',  isLoggedIn,isAuthor, catchAsync(inyanga.renderEditForm))
 
