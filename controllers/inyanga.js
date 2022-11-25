@@ -1,4 +1,5 @@
 const Inyanga = require('../models/inyanga');
+const { cloudinary } = require("../cloudinary");
 
 module.exports.index = async (cin, cout) => {
     const inyanga = await Inyanga.find({});
@@ -50,6 +51,12 @@ module.exports.updateInyanga =async (cin, cout) => {
     const imgs = cin.files.map(f => ({ url: f.path, filename: f.filename }));
     inyanga.images.push(...imgs);
     await inyanga.save();
+    if (cin.body.deleteImages) {
+        for (let filename of cin.body.deleteImages) {
+            await cloudinary.uploader.destroy(filename);
+        }
+        await inyanga.updateOne({ $pull: { images: { filename: { $in: cin.body.deleteImages } } } })
+    }
     cin.flash('success', 'Successfully updated a member!');
     cout.redirect(`/inyanga/${inyanga._id}`)
 }

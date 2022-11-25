@@ -11,7 +11,8 @@ module.exports.inyangaSchema = Joi.object({
         contact: Joi.number().required(),
         image: Joi.string()
 
-    }).required()
+    }).required(),
+    deleteImages: Joi.array()
 });
 
 module.exports.reviewSchema = Joi.object({
