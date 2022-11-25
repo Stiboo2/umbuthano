@@ -1,3 +1,5 @@
+bsCustomFileInput.init()
+
 
 (function () {
     'use strict'
