@@ -15,8 +15,8 @@ router.route('/')
 
 router.get('/new',isLoggedIn, inyanga.renderNewForm)
 router.route('/:id')
-    .put(isLoggedIn, isAuthor, validateInyanga, catchAsync(inyanga.updateInyanga))
-    .delete(isLoggedIn, isAuthor, catchAsync(inyanga.deleteInyanga))
+    .put(isLoggedIn, isAuthor, upload.array('image'), validateInyanga, catchAsync(inyanga.updateInyanga))
+    .delete(isLoggedIn, isAuthor,   catchAsync(inyanga.deleteInyanga))
     .get( catchAsync(inyanga.showInyanga));
 
 router.get('/:id/edit',  isLoggedIn,isAuthor, catchAsync(inyanga.renderEditForm))

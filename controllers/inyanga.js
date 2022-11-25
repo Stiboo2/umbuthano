@@ -47,6 +47,9 @@ module.exports.renderEditForm = async (cin, cout) => {
 module.exports.updateInyanga =async (cin, cout) => {
     const {id} = cin.params;
     const inyanga = await Inyanga.findByIdAndUpdate(id,{...cin.body.inyanga});
+    const imgs = cin.files.map(f => ({ url: f.path, filename: f.filename }));
+    inyanga.images.push(...imgs);
+    await inyanga.save();
     cin.flash('success', 'Successfully updated a member!');
     cout.redirect(`/inyanga/${inyanga._id}`)
 }
