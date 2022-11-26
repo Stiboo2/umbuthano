@@ -2,6 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
+const ImageSchema = new Schema({
+    url: String,
+    filename: String
+});
+
+ImageSchema.virtual('thumbnail').get(function () {
+    return this.url.replace('/upload', '/upload/w_155');
+});
 
 const InyangaSchema = new Schema({
         title:String,
@@ -11,12 +19,7 @@ const InyangaSchema = new Schema({
         massege: String,
         location: String,
         contact: Number,
-        images: [ 
-            {
-                url: String,
-                filename: String
-            }
-        ],
+        images: [ImageSchema],
         author: {
             type: Schema.Types.ObjectId,
             ref: 'User'
