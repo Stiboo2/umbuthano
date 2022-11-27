@@ -19,6 +19,17 @@ const InyangaSchema = new Schema({
         massege: String,
         location: String,
         contact: Number,
+        geometry: {
+            type: {
+                type: String,
+                enum: ['Point'],
+                required: true
+            },
+            coordinates: {
+                type: [Number],
+                required: true
+            }
+        },
         images: [ImageSchema],
         author: {
             type: Schema.Types.ObjectId,
@@ -31,5 +42,5 @@ const InyangaSchema = new Schema({
                 }
             ]
     
-})
+});
 module.exports = mongoose.model('Inyanga',InyangaSchema  );

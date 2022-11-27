@@ -1,5 +1,8 @@
 const Inyanga = require('../models/inyanga');
 const { cloudinary } = require("../cloudinary");
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 
 module.exports.index = async (cin, cout) => {
     const inyanga = await Inyanga.find({});
@@ -12,7 +15,12 @@ module.exports.renderNewForm = (cin, cout) => {
 
 
 module.exports.createInyanga =  async (cin, cout) => {
+    const geoData = await geocoder.forwardGeocode({
+        query:  cin.body.inyanga.location,
+        limit: 1
+    }).send()  
     const inyanga = new Inyanga(cin.body.inyanga);
+    inyanga.geometry = geoData.body.features[0].geometry; 
     inyanga.images = cin.files.map(f => ({ url: f.path, filename: f.filename }));
     inyanga.author = cin.user._id;
     await inyanga.save();
