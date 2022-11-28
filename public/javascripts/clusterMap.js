@@ -7,6 +7,10 @@ center: [23.7743,-29.0553 ],
 zoom: 4.5
 });
 
+map.addControl(new mapboxgl.NavigationControl());
+
+
+
 map.on('load', () => {
 // Add a new source from our GeoJSON data and
 // set the 'cluster' option to true. GL-JS will
