@@ -58,6 +58,11 @@ module.exports.renderEditForm = async (cin, cout) => {
 module.exports.updateInyanga =async (cin, cout) => {
     const {id} = cin.params;
     const inyanga = await Inyanga.findByIdAndUpdate(id,{...cin.body.inyanga});
+    const geoData = await geocoder.forwardGeocode({
+        query: cin.body.inyanga.location,
+        limit: 1
+    }).send()
+    inyanga.geometry = geoData.body.features[0].geometry;
     const imgs = cin.files.map(f => ({ url: f.path, filename: f.filename }));
     inyanga.images.push(...imgs);
     await inyanga.save();
