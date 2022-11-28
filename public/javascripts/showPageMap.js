@@ -1,4 +1,5 @@
 mapboxgl.accessToken = mapToken;
+console.log(inyanga.geometry.coordinates)
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v10', // stylesheet location
@@ -6,13 +7,12 @@ const map = new mapboxgl.Map({
     zoom: 10 // starting zoom
 });
 
-/* new mapboxgl.Marker()
+new mapboxgl.Marker()
     .setLngLat(inyanga.geometry.coordinates)
     .setPopup(
         new mapboxgl.Popup({ offset: 25 })
             .setHTML(
-                `<h3>${inyanga.title}</h3><p>${inyanga.location}</p>`
+                `<h3>${inyanga.surname}</h3><p>${inyanga.location}</p>`
             )
     )
     .addTo(map)
- */

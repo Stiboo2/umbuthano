@@ -7,7 +7,7 @@ module.exports.inyangaSchema = Joi.object({
         surname: Joi.string().required(),
         nicName: Joi.string(),
         massege: Joi.string().required(),
-        location: Joi.string(),
+        location: Joi.string().required(),
         contact: Joi.number().required(),
         image: Joi.string()
 
