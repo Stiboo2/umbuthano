@@ -34,3 +34,15 @@ body {
     color: #333;
     text-shadow: none;
 }
+
+
+#bottom {
+    position: absolute;
+    bottom: 0;
+    height:270px;
+    left: 300px;
+    
+}
+#red{
+    color: red;
+}
