@@ -118,7 +118,12 @@ new mapboxgl.Popup()
 .setHTML(popUpMarkup)
 .addTo(map);
 });
-
+map.on('mouseenter', 'unclustered-point', function () {
+    map.getCanvas().style.cursor = 'crosshair';
+});
+map.on('mouseleave', 'unclustered-point', function () {
+    map.getCanvas().style.cursor = '';
+});
 map.on('mouseenter', 'clusters', function () {
     map.getCanvas().style.cursor = 'pointer';
 });
