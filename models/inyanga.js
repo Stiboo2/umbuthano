@@ -10,6 +10,7 @@ const ImageSchema = new Schema({
 ImageSchema.virtual('thumbnail').get(function () {
     return this.url.replace('/upload', '/upload/w_155');
 });
+const opts = { toJSON: { virtuals: true } };
 
 const InyangaSchema = new Schema({
         title:String,
@@ -42,5 +43,18 @@ const InyangaSchema = new Schema({
                 }
             ]
     
+}, opts);
+
+/* InyangaSchema.virtual('properties.popUpMarkup').get(function () {
+    return `<strong><a href="/inyanga/${this._id}">${this.surname}</a><strong>
+    <p>${this.name.substring(0, 5)}...</p>`
+})
+ */
+
+InyangaSchema.virtual('properties.popUpMarkup').get(function () {
+    return `
+    <strong><a href="/inyanga/${this._id}">${this.surname}</a><strong>
+    <p>${this.name.substring(0, 8)}...</p>`
 });
+
 module.exports = mongoose.model('Inyanga',InyangaSchema  );
