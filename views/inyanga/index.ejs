@@ -1,12 +1,12 @@
     <% layout('layouts/boilerplate')%>
-    <div id="map" style="width: 100%; height: 500px"></div>
+    <div id="cluster-map" ></div>
 
     <h1>Zonke Inyanga</h1>
     <div>
         <a href="/inyanga/new">Add a Member</a>
     </div>
         <% for (let nyanga of inyanga) { %> 
-            <div class="card" mb-3>
+            <div class="card mb-3">
                 <div class="row">
                     <div class="col-md-4">
                         <img class="img-fluid" alt="" src="<%=nyanga.images[0].url%>">
