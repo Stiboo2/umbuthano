@@ -18,9 +18,11 @@ module.exports.createInyanga =  async (cin, cout) => {
     const geoData = await geocoder.forwardGeocode({
         query:  cin.body.inyanga.location,
         limit: 1
-    }).send()  
+    }).send()     
     const inyanga = new Inyanga(cin.body.inyanga);
+    console.log(cin.body.inyanga.location)
     inyanga.geometry = geoData.body.features[0].geometry; 
+    console.log(inyanga.geometry)
     inyanga.images = cin.files.map(f => ({ url: f.path, filename: f.filename }));
     inyanga.author = cin.user._id;
     await inyanga.save();
