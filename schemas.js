@@ -26,12 +26,12 @@ const Joi = BaseJoi.extend(extension)
 
 module.exports.inyangaSchema = Joi.object({
     inyanga: Joi.object({
-        title:Joi.string(),
-        name: Joi.string(),
-        surname: Joi.string().required(),
-        nicName: Joi.string(),
-        massege: Joi.string().required(),
-        location: Joi.string().required(),
+        title:Joi.string().escapeHTML(),
+        name: Joi.string().escapeHTML(),
+        surname: Joi.string().required().escapeHTML(),
+        nicName: Joi.string().escapeHTML(),
+        massege: Joi.string().required().escapeHTML(),
+        location: Joi.string().required().escapeHTML(),
         contact: Joi.number().required(),
         image: Joi.string()
 
@@ -42,6 +42,6 @@ module.exports.inyangaSchema = Joi.object({
 module.exports.reviewSchema = Joi.object({
     review: Joi.object({
         rating: Joi.number().required().min(1).max(5),
-        body: Joi.string().required()
+        body: Joi.string().required().escapeHTML()
     }).required()
 })
