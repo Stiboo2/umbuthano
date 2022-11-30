@@ -20,12 +20,12 @@ const userRoutes = require('./routes/users');
 const inyangaRoutes = require('./routes/inyanga');
 const reviewsRoutes = require('./routes/reviews');
 
+const MongoDBStore = require("connect-mongo")(session);
 
 
 
-
-const dbURL = 'mongodb+srv://radebetha:0fBLL4cDEeTQcXYX@cluster0.mv1lpdh.mongodb.net/doctors?retryWrites=true&w=majority'
-mongoose.connect(dbURL, { useNewUrlParser: true,useUnifiedTopology: true })
+const dbUrl = process.env.DB_URL
+mongoose.connect(dbUrl, { useNewUrlParser: true,useUnifiedTopology: true })
   .then(() => {
         console.log("CONNECTION OPEN!!!")
     })
@@ -51,7 +51,18 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }))
 
+const store = new MongoDBStore({
+    url: dbUrl,
+    secret: 'thisshouldbeabettersecret!',
+    touchAfter: 24 * 60 * 60
+});
+
+store.on("error", function (e) {
+    console.log("SESSION STORE ERROR", e)
+})
+
 const sessionConfig = {
+    store,
     name: 'window',
     secret: 'thisshouldbeabettersecret!',
     resave: false,
