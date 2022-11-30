@@ -24,7 +24,7 @@ const MongoDBStore = require("connect-mongo")(session);
 
 
 
-const dbUrl = process.env.DB_URL
+const dbUrl = process.env.DB_URL_P || process.env.DB_URL
 mongoose.connect(dbUrl, { useNewUrlParser: true,useUnifiedTopology: true })
   .then(() => {
         console.log("CONNECTION OPEN!!!")
@@ -51,9 +51,12 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }))
 
+const secret = process.env.SECRET || 'thisshouldbeabettersecret!';
+
+
 const store = new MongoDBStore({
     url: dbUrl,
-    secret: 'thisshouldbeabettersecret!',
+    secret,
     touchAfter: 24 * 60 * 60
 });
 
@@ -64,7 +67,7 @@ store.on("error", function (e) {
 const sessionConfig = {
     store,
     name: 'window',
-    secret: 'thisshouldbeabettersecret!',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -91,16 +94,6 @@ app.use((cin, cout, next) => {
     next();
 })
 
-
-app.get('/fakeUser', async (cin,cout) =>{
-    const user = new User({email:'thabo.radebe@gmail.com',username:'thabo'})
-    const newUser = await User.register(user,'checken');
-    cout.send(newUser)
-})
-
-//app.use('/inyanga', campgroundRoutes)
-//app.use('/inyanga/:id/reviews', reviewRoutes)
-
 app.use('/', userRoutes);
 app.use('/inyanga', inyangaRoutes)
 app.use('/inyanga/:id/reviews', reviewsRoutes)
@@ -119,7 +112,9 @@ app.use((err, cin, cout, next) => {
     if (!err.message) err.message = 'Oh No, Something Went Wrong!'
     cout.status(statusCode).render('error', { err })
 })
-app.listen(3000,() =>{
-    console.log("LISTENING ON PORT 3000")
-    })
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Serving on port ${port}`)
+})
     
