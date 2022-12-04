@@ -21,8 +21,9 @@ router.post(
         failureMessage: true,
     keepSessionInfo: true, }), 
 users.login)
-
+router.get('/prayerschedule', users.prayerschedule);
 router.get('/logout', users.logout);
+
 
 
 

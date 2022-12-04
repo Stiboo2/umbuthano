@@ -1,5 +1,4 @@
 mapboxgl.accessToken = mapToken;
-console.log(inyanga.geometry.coordinates)
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v10', // stylesheet location

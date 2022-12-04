@@ -13,16 +13,13 @@ module.exports.renderNewForm = (cin, cout) => {
         cout.render('inyanga/new');
     }
 
-
 module.exports.createInyanga =  async (cin, cout) => {
     const geoData = await geocoder.forwardGeocode({
         query:  cin.body.inyanga.location,
         limit: 1
     }).send()     
     const inyanga = new Inyanga(cin.body.inyanga);
-    console.log(cin.body.inyanga.location)
     inyanga.geometry = geoData.body.features[0].geometry; 
-    console.log(inyanga.geometry)
     inyanga.images = cin.files.map(f => ({ url: f.path, filename: f.filename }));
     inyanga.author = cin.user._id;
     await inyanga.save();
@@ -57,7 +54,12 @@ module.exports.renderEditForm = async (cin, cout) => {
 
 module.exports.updateInyanga =async (cin, cout) => {
     const {id} = cin.params;
+    const geoData = await geocoder.forwardGeocode({
+        query:  cin.body.inyanga.location,
+        limit: 1
+    }).send() 
     const inyanga = await Inyanga.findByIdAndUpdate(id,{...cin.body.inyanga});
+    inyanga.geometry = geoData.body.features[0].geometry;
     const imgs = cin.files.map(f => ({ url: f.path, filename: f.filename }));
     inyanga.images.push(...imgs);
     await inyanga.save();

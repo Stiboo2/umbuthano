@@ -14,9 +14,9 @@ const opts = { toJSON: { virtuals: true } };
 
 const InyangaSchema = new Schema({
         title:String,
+        nicName: String,
         name: String,
         surname: String,
-        nicName: String,
         massege: String,
         location: String,
         contact: Number,

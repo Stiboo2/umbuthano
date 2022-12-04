@@ -29,12 +29,11 @@ module.exports.inyangaSchema = Joi.object({
         title:Joi.string().escapeHTML(),
         name: Joi.string().escapeHTML(),
         surname: Joi.string().required().escapeHTML(),
-        nicName: Joi.string().escapeHTML(),
         massege: Joi.string().required().escapeHTML(),
         location: Joi.string().required().escapeHTML(),
         contact: Joi.number().required(),
-        image: Joi.string()
-
+        image: Joi.string(),
+        nicName: Joi.string().escapeHTML()
     }).required(),
     deleteImages: Joi.array()
 });

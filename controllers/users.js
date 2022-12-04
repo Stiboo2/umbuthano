@@ -41,4 +41,9 @@ module.exports.logout = (cin, cout,next) => {
     cin.flash('success', "Goodbye!");
     cout.redirect('/inyanga');
     });
+
 }
+module.exports.prayerschedule = (cin, cout,next) => {
+    cin.flash('success', "This week Prayer Time Table");
+    cout.render('users/prayerschedule');
+    };

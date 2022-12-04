@@ -6,7 +6,7 @@ const Review = require('./models/review');
 module.exports.isLoggedIn = (cin, cout, next) => {
     if (!cin.isAuthenticated()){
         cin.session.returnTo = cin.originalUrl
-        cin.flash('error','you need to be signed in bra');
+        cin.flash('error','you need to be signed');
         return cout.redirect('/login');
     }
     next();
