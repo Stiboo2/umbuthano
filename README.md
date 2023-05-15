@@ -1,29 +1,9 @@
-# umbuthano
-second
+# this code is on render :  https://umbuthano.onrender.com
+
 Description: 
 The Web Developer Bootcamp 2023 by Colt Steele
 
-COMPLETELY REDONE WITH OVER 500 BRAND NEW VIDEOS!
-
-Hi! Welcome to the brand new version of The Web Developer Bootcamp, Udemy's most popular web development course.  This course was just completely overhauled to prepare students for the 2023 job market, with over 60 hours of brand new content. This is the only course you need to learn web development. There are a lot of options for online developer training, but this course is without a doubt the most comprehensive and effective on the market.  Here's why:
-
-This is the only Udemy course taught by a professional bootcamp instructor with a track record of success.
-
-94% of my in-person bootcamp students go on to get full-time developer jobs. Most of them are complete beginners when I start working with them.
-
-The previous 2 bootcamp programs that I taught cost $14,000 and $21,000.  This course is just as comprehensive but with brand new content for a fraction of the price.
-
-Everything I cover is up-to-date and relevant to 2022's developer job market. This course does not cut any corners. I just spent 8 months redoing this behemoth of a course!
-
-We build 13+ projects, including a gigantic production application called YelpCamp. No other course walks you through the creation of such a substantial application.
-
-The course is constantly updated with new content, projects, and modules.  Think of it as a subscription to a never-ending supply of developer training.
-
-You get to meet my cats and chickens!
-
-When you're learning to program you often have to sacrifice learning the exciting and current technologies in favor of the "beginner friendly" classes.  With this course, you get the best of both worlds.  This is a course designed for the complete beginner, yet it covers some of the most exciting and relevant topics in the industry.
-
-Throughout the brand new version of the course we cover tons of tools and technologies including:
+tools and technologies including:
 
 HTML5
 
